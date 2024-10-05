@@ -49,7 +49,7 @@ end
 function groq_replace()
     dingllm.invoke_llm_and_stream_into_editor({
       url = 'https://api.groq.com/openai/v1/chat/completions',
-      model = 'llama-3.1-70b-versatile',
+      model = 'llama-3.2-90b-text-preview', --llama-3.1-70b-versatile
       api_key_name = 'GROQ_API_KEY',
       system_prompt = system_prompt,
       replace = true,
@@ -59,7 +59,7 @@ end
 function groq_help()
     dingllm.invoke_llm_and_stream_into_editor({
       url = 'https://api.groq.com/openai/v1/chat/completions',
-      model = 'llama-3.1-70b-versatile',
+      model = 'llama-3.2-90b-text-preview',
       api_key_name = 'GROQ_API_KEY',
       system_prompt = helpful_prompt,
       replace = false,
@@ -103,14 +103,35 @@ function anthropic_replace()
       system_prompt = system_prompt,
       replace = true,
     }, dingllm.make_anthropic_spec_curl_args, dingllm.handle_anthropic_spec_data)
- end
+end
+
+function openai_replace()
+    dingllm.invoke_llm_and_stream_into_editor({
+      url = 'https://api.openai.com/v1/chat/completions',
+      model = 'gpt-4o',
+      api_key_name = 'OPENAI_API_KEY',
+      system_prompt = system_prompt,
+      replace = true,
+    }, dingllm.make_openai_spec_curl_args, dingllm.handle_openai_spec_data)
+end
+
+function openai_help()
+    dingllm.invoke_llm_and_stream_into_editor({
+      url = 'https://api.openai.com/v1/chat/completions',
+      model = 'gpt-4o',
+      api_key_name = 'OPENAI_API_KEY',
+      system_prompt = helpful_prompt,
+      replace = false,
+    }, dingllm.make_openai_spec_curl_args, dingllm.handle_openai_spec_data)
+end
 -- Copy these from the original configuration
 
 -- Keybindings
 vim.keymap.set({ 'n', 'v' }, '<leader>k', groq_replace, { desc = 'llm groq' })
-vim.keymap.set({ 'n', 'v' }, '<leader>K', groq_help, { desc = 'llm groq_help' })
-vim.keymap.set({ 'n', 'v' }, '<leader>L', llama405b_help, { desc = 'llm llama405b_help' })
-vim.keymap.set({ 'n', 'v' }, '<leader>l', llama405b_replace, { desc = 'llm llama405b_replace' })
+vim.keymap.set({ 'n', 'v' }, '<leader>l', groq_help, { desc = 'llm groq_help' })
 vim.keymap.set({ 'n', 'v' }, '<leader>I', anthropic_help, { desc = 'llm anthropic_help' })
 vim.keymap.set({ 'n', 'v' }, '<leader>i', anthropic_replace, { desc = 'llm anthropic' })
 vim.keymap.set({ 'n', 'v' }, '<leader>o', llama_405b_base, { desc = 'llama base' })
+vim.keymap.set({ 'n', 'v' }, '<leader>ok', openai_replace, { desc = 'llm openai_replace' })
+vim.keymap.set({ 'n', 'v' }, '<leader>oh', openai_help, { desc = 'llm openai_help' })
+
