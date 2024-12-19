@@ -6,6 +6,7 @@ vim.cmd.packadd('packer.nvim')
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use 'ThePrimeagen/vim-be-good'
 
   use {
 	  'nvim-telescope/telescope.nvim',
@@ -89,5 +90,24 @@ return require('packer').startup(function(use)
         require('render-markdown').setup({})
     end,
 })
+
+    -- latex
+    use {
+    'lervag/vimtex',
+    config = function()
+        vim.g.vimtex_view_method = 'zathura'
+        vim.g.vimtex_compiler_method = 'latexmk'
+    end
+    }
+
+use {
+    'sirver/ultisnips',
+    requires = {'honza/vim-snippets'},
+    config = function()
+        vim.g.UltiSnipsExpandTrigger = '<tab>'
+        vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
+        vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
+    end
+}
 end)
 

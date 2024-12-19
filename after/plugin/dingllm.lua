@@ -128,7 +128,7 @@ end
 
 -- Keybindings
 vim.keymap.set({ 'n', 'v' }, '<leader>k', groq_replace, { desc = 'llm groq' })
-vim.keymap.set({ 'n', 'v' }, '<leader>l', groq_help, { desc = 'llm groq_help' })
+-- vim.keymap.set({ 'n', 'v' }, '<leader>l', groq_help, { desc = 'llm groq_help' })
 vim.keymap.set({ 'n', 'v' }, '<leader>I', anthropic_help, { desc = 'llm anthropic_help' })
 vim.keymap.set({ 'n', 'v' }, '<leader>i', anthropic_replace, { desc = 'llm anthropic' })
 vim.keymap.set({ 'n', 'v' }, '<leader>o', llama_405b_base, { desc = 'llama base' })
